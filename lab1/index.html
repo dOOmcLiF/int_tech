@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="HTML, CSS, проект, пример">
+    <meta name="description" content="Пример HTML-документа с использованием различных элементов и стилей CSS.">
+    <title>Пример HTML-документа</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Заголовок страницы</h1>
+        <nav>
+            <ul>
+                <li><a href="#section1">Раздел 1</a></li>
+                <li><a href="#section2">Раздел 2</a></li>
+                <li><a href="#section3">Раздел 3</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="section1">
+            <h2>Раздел 1</h2>
+            <p>Это пример абзаца текста. <span class="highlight">Важный текст</span> выделен.</p>
+            <img src="src/image.png" alt="Пример изображения">
+            <picture>
+                
+                <img src="src/image_small.png" alt="Альтернативное изображение">
+            </picture>
+        </section>
+
+        <section id="section2">
+            <h2>Раздел 2</h2>
+            <table>
+                <tr>
+                    <th>Заголовок 1</th>
+                    <th>Заголовок 2</th>
+                </tr>
+                <tr>
+                    <td>Данные 1</td>
+                    <td>Данные 2</td>
+                </tr>
+            </table>
+            <div class="iframe-container">
+                <iframe src="https://ru.wikipedia.org/wiki/Сибирский_федеральный_университет" class="responsive-iframe" title="Пример iframe"></iframe>
+            </div>
+        </section>
+
+        <section id="section3">
+            <h2>Раздел 3</h2>
+            <form>
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                <label for="options">Выберите опцию:</label>
+                <select id="options" name="options">
+                    <option value="option1">Опция 1</option>
+                    <option value="option2">Опция 2</option>
+                </select>
+                <button type="submit">Отправить</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Пример HTML-документа</p>
+    </footer>
+</body>
+</html>

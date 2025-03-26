@@ -53,9 +53,9 @@ h1, h2, h3 {
     color: var(--primary-color);
 }
 
-p {
+/* p {
     line-height: 1.6;
-}
+} */
 
 .highlight {
     background-color: var(--secondary-color);
@@ -138,7 +138,7 @@ footer {
     }
 }
 
-section {
+#section1 {
     animation: fadeIn 1s ease-in-out;
 }
 
@@ -152,9 +152,6 @@ section {
     }
 }
 
-a:visited {
-    color: purple;
-}
 
 p::first-line {
     font-weight: bold;
@@ -177,4 +174,12 @@ p::first-line {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 10;
+}
+
+article > p {
+    line-height: 1.6;
+}
+
+img:hover {
+    transform: scale(1.1);
 }

@@ -1,14 +1,11 @@
-/* Подключение внешних шрифтов */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-/* Переменные */
 :root {
     --primary-color: #3498db;
     --secondary-color: #2ecc71;
     --font-family: 'Roboto', sans-serif;
 }
 
-/* Основные стили */
 body {
     font-family: var(--font-family);
     margin: 0;
@@ -132,7 +129,6 @@ footer {
     bottom: 0;
 }
 
-/* Анимация */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -146,7 +142,6 @@ section {
     animation: fadeIn 1s ease-in-out;
 }
 
-/* Медиазапросы */
 @media (max-width: 768px) {
     nav ul li {
         display: block;
@@ -157,7 +152,6 @@ section {
     }
 }
 
-/* Псевдоклассы и псевдоэлементы */
 a:visited {
     color: purple;
 }
@@ -166,18 +160,15 @@ p::first-line {
     font-weight: bold;
 }
 
-/* Вычисления */
 .container {
     width: calc(100% - 40px);
 }
 
-/* Flexbox */
 .flex-container {
     display: flex;
     justify-content: space-between;
 }
 
-/* Позиционирование и z-index */
 .overlay {
     position: absolute;
     top: 0;

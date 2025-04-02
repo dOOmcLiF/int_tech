@@ -1,5 +1,3 @@
-// menu-script.js
-
 document.getElementById('copyButton').addEventListener('click', function() {
     const menuItems = document.querySelectorAll('#menu li');
     const paragraph = document.getElementById('paragraph');

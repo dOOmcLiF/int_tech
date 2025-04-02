@@ -18,4 +18,4 @@ const bill = {
 console.log(JSON.stringify(bill));
 
 const currentDate = new Date();
-console.log("Текущая дата и время:", currentDate.toString());
+console.log("Текущая дата и время:", currentDate.toLocaleDateString());

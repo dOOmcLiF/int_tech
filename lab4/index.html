@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node.js App</title>
+</head>
+<body>
+  <h1>Добро пожаловать на главную страницу</h1>
+  <p><a href="/text">Текстовый ответ</a></p>
+  <p><a href="/json">JSON ответ</a></p>
+  <p><a href="/image">Изображение</a></p>
+  <h2>Вход</h2>
+  <form id="loginForm">
+    <label for="username">Имя пользователя:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <button type="button" onclick="login()">Войти</button>
+  </form>
+  <div id="loginResult"></div>
+
+  <script>
+    function login() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', `/login?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`, true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          document.getElementById('loginResult').innerText = xhr.responseText;
+        }
+      };
+      xhr.send();
+    }
+  </script>
+</body>
+</html>

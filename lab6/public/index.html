@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Drawing</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Collaborative Drawing App</h1>
+    <canvas id="drawingCanvas" width="800" height="600"></canvas>
+    <div>
+        <label for="colorPicker">Color:</label>
+        <input type="color" id="colorPicker" value="#000000">
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

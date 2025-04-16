@@ -1,6 +1,7 @@
 const canvas = document.getElementById('drawingCanvas');
 const ctx = canvas.getContext('2d');
 const colorPicker = document.getElementById('colorPicker');
+const clearButton = document.getElementById('clearButton');
 
 let currentColor = '#000000';
 let isDrawing = false;
@@ -20,6 +21,11 @@ socket.on('draw', (data) => {
     drawLine(data);
 });
 
+// Обработка очистки холста
+socket.on('clear-canvas', () => {
+    clearCanvas();
+});
+
 // Функция для рисования линии
 function drawLine({ startX, startY, endX, endY, color }) {
     ctx.beginPath();
@@ -29,6 +35,11 @@ function drawLine({ startX, startY, endX, endY, color }) {
     ctx.lineTo(endX, endY);
     ctx.stroke();
     ctx.closePath();
+}
+
+// Функция для очистки Canvas
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 // Обработка событий мыши
@@ -66,4 +77,10 @@ canvas.addEventListener('mouseleave', () => {
 // Изменение цвета
 colorPicker.addEventListener('input', (e) => {
     currentColor = e.target.value;
+});
+
+// Обработка нажатия на кнопку "Очистить холст"
+clearButton.addEventListener('click', () => {
+    clearCanvas(); // Очищаем локальный Canvas
+    socket.emit('clear-canvas'); // Уведомляем сервер о необходимости очистки
 });

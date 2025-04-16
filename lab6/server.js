@@ -23,6 +23,12 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('draw', data); // Передаем действие другим клиентам
     });
 
+    // Обработка запроса на очистку холста
+    socket.on('clear-canvas', () => {
+        drawingHistory = []; // Очищаем историю
+        io.emit('clear-canvas'); // Уведомляем всех клиентов
+    });
+
     // Обработка отключения пользователя
     socket.on('disconnect', () => {
         console.log('A user disconnected:', socket.id);

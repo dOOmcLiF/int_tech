@@ -6,7 +6,6 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-// Хранение истории действий пользователей
 let drawingHistory = [];
 
 app.use(express.static('public'));
@@ -14,22 +13,18 @@ app.use(express.static('public'));
 io.on('connection', (socket) => {
     console.log('A user connected:', socket.id);
 
-    // Отправляем историю рисунка новому клиенту
     socket.emit('load-history', drawingHistory);
 
-    // Обработка новых действий пользователя
     socket.on('draw', (data) => {
-        drawingHistory.push(data); // Сохраняем действие в истории
-        socket.broadcast.emit('draw', data); // Передаем действие другим клиентам
+        drawingHistory.push(data); 
+        socket.broadcast.emit('draw', data); 
     });
 
-    // Обработка запроса на очистку холста
     socket.on('clear-canvas', () => {
-        drawingHistory = []; // Очищаем историю
-        io.emit('clear-canvas'); // Уведомляем всех клиентов
+        drawingHistory = [];
+        io.emit('clear-canvas'); 
     });
 
-    // Обработка отключения пользователя
     socket.on('disconnect', () => {
         console.log('A user disconnected:', socket.id);
     });

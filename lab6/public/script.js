@@ -74,13 +74,11 @@ canvas.addEventListener('mouseleave', () => {
     isDrawing = false;
 });
 
-// Изменение цвета
 colorPicker.addEventListener('input', (e) => {
     currentColor = e.target.value;
 });
 
-// Обработка нажатия на кнопку "Очистить холст"
 clearButton.addEventListener('click', () => {
-    clearCanvas(); // Очищаем локальный Canvas
-    socket.emit('clear-canvas'); // Уведомляем сервер о необходимости очистки
+    clearCanvas();
+    socket.emit('clear-canvas');
 });

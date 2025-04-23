@@ -6,27 +6,22 @@ const clearButton = document.getElementById('clearButton');
 let currentColor = '#000000';
 let isDrawing = false;
 
-// Подключение к серверу через socket.io
 const socket = io();
 
-// Загрузка истории рисунка
 socket.on('load-history', (history) => {
     history.forEach((action) => {
         drawLine(action);
     });
 });
 
-// Получение новых действий от других клиентов
 socket.on('draw', (data) => {
     drawLine(data);
 });
 
-// Обработка очистки холста
 socket.on('clear-canvas', () => {
     clearCanvas();
 });
 
-// Функция для рисования линии
 function drawLine({ startX, startY, endX, endY, color }) {
     ctx.beginPath();
     ctx.strokeStyle = color;
@@ -37,12 +32,10 @@ function drawLine({ startX, startY, endX, endY, color }) {
     ctx.closePath();
 }
 
-// Функция для очистки Canvas
 function clearCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-// Обработка событий мыши
 canvas.addEventListener('mousedown', (e) => {
     isDrawing = true;
     const { offsetX, offsetY } = e;

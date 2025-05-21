@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "dropbox": "^10.34.0",
+    "fs": "^0.0.1-security",
+    "isomorphic-fetch": "^3.0.0"
+  },
+  "name": "lab10",
+  "version": "1.0.0",
+  "main": "dropbox-upload-list.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

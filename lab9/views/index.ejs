@@ -7,20 +7,17 @@
 <body>
   <h1>Доска объявлений</h1>
   
-  <!-- Форма добавления -->
   <form method="POST">
     <input type="text" name="title" placeholder="Заголовок" required>
     <textarea name="text" placeholder="Текст объявления" required></textarea>
     <button type="submit">Добавить</button>
   </form>
 
-  <!-- Поиск -->
   <form action="/search" method="GET">
     <input type="text" name="q" placeholder="Поиск по тексту">
     <button type="submit">Искать</button>
   </form>
 
-  <!-- Список объявлений -->
   <hr>
   <% if (search) { %>
     <h2>Результаты поиска по "<%= query %>":</h2>
@@ -32,7 +29,6 @@
       <p><%= post.text %></p>
       <small><%= new Date(post.date).toLocaleDateString() %></small>
       
-      <!-- Кнопка удаления -->
       <form action="/delete/<%= post._id %>" method="POST" style="display:inline;">
         <button type="submit">Удалить</button>
       </form>

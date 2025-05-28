@@ -28,6 +28,10 @@
         <label for="age">Возраст:</label>
         <input class="form-control" name="age" />
       </div>
+      <div class="form-group">
+        <label for="password">Пароль:</label>
+        <input class="form-control" name="password" type="password" />
+      </div>
       <div class="panel-body">
         <button type="submit" class="btn btn-sm btn-primary">Сохранить</button>
         <a id="reset" class="btn btn-sm btn-primary">Сбросить</a>
@@ -62,39 +66,48 @@
     });
   }
 
-  function CreateUser(userName, userAge) {
+  function CreateUser(userName, userAge, userPassword) {
     $.ajax({
-      url: API_URL + "/users",
-      contentType: "application/json",
-      method: "POST",
-      headers: { "Authorization": "Bearer " + localStorage.getItem("token") },
-      data: JSON.stringify({ name: userName, age: userAge }),
-      success: function (user) {
-        reset();
-        $("table tbody").append(row(user));
-      },
-      error: function () {
-        alert("Ошибка добавления");
-      }
+        url: "/api/users",
+        contentType: "application/json",
+        method: "POST",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("token") },
+        data: JSON.stringify({
+            name: userName,
+            age: userAge,
+            password: userPassword
+        }),
+        success: function (user) {
+            reset();
+            $("table tbody").append(row(user));
+        },
+        error: function () {
+            alert("Ошибка добавления");
+        }
     });
-  }
+}
 
-  function EditUser(userId, userName, userAge) {
+function EditUser(userId, userName, userAge, userPassword) {
     $.ajax({
-      url: "/api/users",
-      contentType: "application/json",
-      method: "PUT",
-      headers: { "Authorization": "Bearer " + localStorage.getItem("token") },
-      data: JSON.stringify({ id: userId, name: userName, age: userAge }),
-      success: function (user) {
-        reset();
-        $("tr[data-rowid='" + user.id + "']").replaceWith(row(user));
-      },
-      error: function () {
-        alert("Ошибка изменения");
-      }
+        url: "/api/users",
+        contentType: "application/json",
+        method: "PUT",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("token") },
+        data: JSON.stringify({
+            id: userId,
+            name: userName,
+            age: userAge,
+            password: userPassword
+        }),
+        success: function (user) {
+            reset();
+            $("tr[data-rowid='" + user.id + "']").replaceWith(row(user));
+        },
+        error: function () {
+            alert("Ошибка изменения");
+        }
     });
-  }
+}
 
   function DeleteUser(id) {
     $.ajax({
@@ -164,11 +177,15 @@
   }
 
   var row = function (user) {
-    return "<tr data-rowid='" + user.id + "'><td>" + user.id + "</td>" +
-           "<td>" + user.name + "</td><td>" + user.age + "</td>" +
-           "<td><a class='editLink' data-id='" + user.id + "'>Изменить</a> | " +
-           "<a class='removeLink' data-id='" + user.id + "'>Удалить</a></td></tr>";
-  };
+    return "<tr data-rowid='" + user.id + "'>" +
+        "<td>" + user.id + "</td>" +
+        "<td>" + user.name + "</td>" +
+        "<td>" + user.age + "</td>" +
+        "<td>••••••••</td>" + // скрытый пароль
+        "<td><a class='editLink' data-id='" + user.id + "'>Изменить</a> | " +
+        "<a class='removeLink' data-id='" + user.id + "'>Удалить</a></td>" +
+        "</tr>";
+};
 
   $("#reset").click(function (e) {
     e.preventDefault();
@@ -180,11 +197,13 @@
     var id = this.elements["id"].value;
     var name = this.elements["name"].value;
     var age = this.elements["age"].value;
+    var password = this.elements["password"].value;
+
     if (id == 0)
-      CreateUser(name, age);
+        CreateUser(name, age, password);
     else
-      EditUser(id, name, age);
-  });
+        EditUser(id, name, age, password);
+});
 
   $("body").on("click", ".editLink", function () {
     var id = $(this).data("id");
